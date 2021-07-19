@@ -1,0 +1,1 @@
+export const CountryMap = () => <div>map</div>
