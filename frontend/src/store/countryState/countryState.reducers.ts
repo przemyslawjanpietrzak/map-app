@@ -5,12 +5,16 @@ export interface CountryStateStore {
   isLoading: boolean;
   error: Error | null;
   countryStates: Array<CountryState> | null;
+  selectedMinVisitsCount: number,
+  selectedMaxVisitsCount: number,
 }
 
 const defaultState: CountryStateStore = {
   isLoading: false,
   error: null,
   countryStates: null,
+  selectedMinVisitsCount: 0,
+  selectedMaxVisitsCount: 0,
 };
 
 export const countryStateReducer = (state = defaultState, action: CountryStateActions): CountryStateStore => {
@@ -29,9 +33,17 @@ export const countryStateReducer = (state = defaultState, action: CountryStateAc
   }
   if (action.type === CountryStateActionTypes.ErrorCountryState) {
     return {
+      ...state,
       countryStates: null,
       error: action.payload,
       isLoading: false,
+    };
+  }
+  if (action.type === CountryStateActionTypes.SetSelectedVisitedCount) {
+    return {
+      ...state,
+      selectedMinVisitsCount: action.payload.min,
+      selectedMaxVisitsCount: action.payload.max,
     };
   }
 

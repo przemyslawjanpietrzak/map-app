@@ -1,5 +1,3 @@
-import axios from "axios";
-
 export interface CountryState {
   id: string;
   name: string;

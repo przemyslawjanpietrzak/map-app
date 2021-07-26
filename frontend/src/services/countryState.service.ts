@@ -8,8 +8,12 @@ export interface CountryState {
 
 export class CountryStateService {
     async getCountryStates(): Promise<Array<CountryState>> {
-        const { data } = await axios.get<Array<CountryState>>('/countryState');
+        const { data } = await axios.get<Array<CountryState>>('/country-states', { headers: {
+            'Access-Control-Allow-Origin': '*',
+        }});
 
         return data;
     }
 }
+
+export const countryStateService = new CountryStateService();
